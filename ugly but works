@@ -1,0 +1,91 @@
+class Node: 
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+class line:
+    def __init__(self):
+        self.head = None 
+    def Index(self,index):
+        current_node = self.head
+        position = 0
+        while current_node is not None and position != index:
+            position += 1
+            current_node = current_node.next
+        return current_node
+    def insert(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        current_node = self.head
+        while(current_node.next):
+            current_node = current_node.next
+        current_node.next = new_node
+    def update(self, val, index):
+        current_node = self.head
+        position = 0
+        if position == index:
+            current_node.data = val
+        else:
+            while(current_node != None and position != index):
+                position = position+1
+                current_node = current_node.next
+            if current_node != None:
+                current_node.data = val
+            else:
+                print("Index not present")
+    def display(self):
+        current = self.head
+        print("Current Line:")
+        while current:
+            Rings = current.data
+            print(Rings)
+            current = current.next
+    def out(self):
+        current = self.head
+        Rings = current.data
+        print(f"{Rings}'s order is ready!")
+        current = current.next
+    def over(self):
+        current = self.head
+        order = current.data
+        print(order, "is made!")
+        current = current.next
+    def clear(self):
+        self.head = None
+    def delete(self): 
+        if (self.head == None):
+            return
+        self.head = self.head.next
+coffee = line()
+order = line()
+def empty():
+    "    "
+lineCount = 0
+x = 1
+while(x == 1):
+    print("Is someone entering the line? (y/n)")
+    com1 = ["y", "n"]
+    comp1 = str(input())
+    if (int(com1.index(comp1)) == 0):
+        print("Who's getting in line?")
+        X1 = input()
+        coffee.insert(X1)
+        print("What is your order?")
+        X2 = input()
+        order.insert(X2)
+        lineCount += 1
+        coffee.display()
+    elif (int(com1.index(comp1)) == 1):
+        pass
+    print("Are any orders done? (y/n)")
+    com = ["y", "n"]
+    comp = str(input())
+    if (int(com.index(comp)) == 0):
+        order.over()
+        coffee.out()
+        coffee.delete()
+        order.delete()
+        coffee.display()
+    elif (int(com.index(comp)) == 1):
+        pass
