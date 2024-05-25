@@ -19,8 +19,8 @@ class line:
         current = self.head
         print("=========================================\nCurrent Line:")
         while current:
-            Rings = current.data
-            print(Rings)
+            whole = current.data
+            print(whole)
             current = current.next
     def out(self):
         current = self.head
@@ -40,9 +40,14 @@ coffee = line()
 order = line()
 lineCount = 0
 x = 1
+run = 0
 print("===============Coffee Shop===============")
 while(x == 1):
-    print("1. Enter in line\n2. Order finished")
+    if (lineCount >= 1):
+        print("=========================================")
+    print("1. Enter in line")
+    if (lineCount >= 1):
+        print("2. Order finished")
     comp = int(input())
     if (int(comp) == 1):
         print("Who's getting in line?")
@@ -52,9 +57,14 @@ while(x == 1):
         X2 = input()
         order.insert(X2)
         lineCount += 1
+        run = 1
     if (int(comp) == 2):
         order.over()
+        time.sleep(0.5)
         coffee.out()
         coffee.delete()
         order.delete()
-    coffee.display()
+        time.sleep(0.5)
+        lineCount -= 1
+    if (lineCount >= 1):
+        coffee.display()
